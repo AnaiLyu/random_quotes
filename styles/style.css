@@ -9,14 +9,15 @@
 }
 
 html {
+  min-height: 100%;
   font-size: 10px;
 }
 
 body {
-  font-size: 1.6rem;
-  margin: 0 auto;
   min-width: 320px;
   max-width: 1440px;
+  margin: 0 auto;
+  font-size: 1.6rem;
 }
 
 .container {
