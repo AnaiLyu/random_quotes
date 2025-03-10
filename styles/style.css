@@ -1,0 +1,49 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  transition-duration: .3s;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1440px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 768px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: #006bdde3;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+h1 {
+  padding: 2rem;
+}
+
+p {
+  padding: 1.7rem;
+}
