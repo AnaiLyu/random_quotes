@@ -31,12 +31,8 @@ a {
 }
 
 button {
-  padding: 10px 20px;
   font-size: 1.6rem;
-  color: #fff;
-  background-color: #006bdde3;
   border: none;
-  border-radius: 15px;
   cursor: pointer;
 }
 
@@ -46,4 +42,52 @@ h1 {
 
 p {
   padding: 1.7rem;
+}
+
+.dark-toggle {
+  margin-top: 10px;
+  padding: 5px 15px;
+  background-color: #006bdde3;
+  border-radius: 12px;
+}
+
+/* Light Mode */
+.light-mode {
+  color: #222;
+  background-color: #fbf4ed;
+}
+
+.generate-quote_btn {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #006bdde3;
+  border-radius: 15px;
+}
+
+.generate-quote_btn:hover {
+  background-color: #006bdd;
+}
+
+.generate-quote_btn:active {
+  color: #ffffffbb;
+  background-color: #0052a9;
+}
+
+/* Dark Mode */
+.dark-mode {
+  color: #fbf4ed;
+  background-color: #222;
+}
+
+.dark-mode .dark-toggle {
+  color: #ffffffbb;
+}
+
+.dark-mode .generate-quote_btn:hover {
+  background-color: #006bddaa;
+}
+
+.dark-mode .generate-quote_btn:active {
+  color: #ffffffbb;
+  background-color: #005abaaa;
 }
