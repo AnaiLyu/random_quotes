@@ -1,3 +1,5 @@
+import quotes from './quotes.js';
+
 /** Dark Mode */
 const body = document.querySelector('.body');
 const darkToggle = document.querySelector('.dark-toggle');
@@ -19,32 +21,6 @@ darkToggle.addEventListener('click', darkMode);
 const quoteElement = document.querySelector('.quote');
 const authorElement = document.querySelector('.author');
 const generateBtn = document.querySelector('.generate-quote_btn');
-
-const quotes = [
-  {
-    author: 'Оскар Уайльд',
-    quote: 'Будьте собой. Прочие роли уже заняты',
-  },
-  {
-    author: 'Уинстон Черчилль',
-    quote: 'Я люблю учиться, но терпеть не могу, когда меня учат',
-  },
-  {
-    author: 'Граучо Маркс',
-    quote:
-      'Я бы никогда не вступил в клуб, который согласился бы принять такого, как я',
-  },
-  {
-    author: 'Рональд Рейган',
-    quote:
-      'Государство — это не решение наших проблем. Государство и есть наша проблема',
-  },
-  {
-    author: 'Альберт Эйнштейн',
-    quote:
-      'Две вещи бесконечны: вселенная и человеческая глупость. Хотя насчёт вселенной я не уверен',
-  },
-];
 
 let previousRandomNum = -1;
 
