@@ -22,21 +22,40 @@ const quoteElement = document.querySelector('.quote');
 const authorElement = document.querySelector('.author');
 const generateBtn = document.querySelector('.generate-quote_btn');
 
-let previousRandomNum = -1;
+let currentQuoteIndex = -1;
 
 const getRandomQuote = () => {
   let randomNum;
   do {
     randomNum = Math.floor(Math.random() * quotes.length);
-  } while (randomNum === previousRandomNum);
-  previousRandomNum = randomNum;
-  // quoteElement.innerHTML = '<em>"' + quotes[randomNum].quote + '"</em>';
+  } while (randomNum === currentQuoteIndex);
+  currentQuoteIndex = randomNum;
   quoteElement.classList.add('quote-style');
-  // quoteElement.innerHTML = quotes[randomNum].quote;
-  // authorElement.textContent = quotes[randomNum].author;
-  const { quote, author } = quotes[randomNum];
+  const { quote, author: quoteAuthor } = quotes[randomNum];
   quoteElement.innerHTML = quote;
-  authorElement.textContent = author;
+  authorElement.textContent = quoteAuthor;
 };
 
 generateBtn.addEventListener('click', getRandomQuote);
+
+/** Make Favorite */
+const toggleFavorite = () =>
+  (quotes[currentQuoteIndex].isFavorite =
+    !quotes[currentQuoteIndex].isFavorite);
+
+/** Favorite */
+const favorite = document.querySelector('.favorite_btn');
+
+const makeFavorite = () => {
+  if (currentQuoteIndex !== -1) {
+    favorite.classList.toggle('favorite_btn_active');
+  }
+  if (favorite.classList.contains('favorite_btn_active')) {
+    favorite.textContent = 'Remove';
+  } else {
+    favorite.textContent = 'Favorite';
+  }
+};
+
+favorite.addEventListener('click', makeFavorite);
+favorite.addEventListener('click', toggleFavorite);
