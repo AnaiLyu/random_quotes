@@ -29,11 +29,14 @@ const getRandomQuote = () => {
   do {
     randomNum = Math.floor(Math.random() * quotes.length);
   } while (randomNum === previousRandomNum);
-
   previousRandomNum = randomNum;
   // quoteElement.innerHTML = '<em>"' + quotes[randomNum].quote + '"</em>';
-  quoteElement.innerHTML = `<em>"${quotes[randomNum].quote}"</em>`;
-  authorElement.textContent = quotes[randomNum].author;
+  quoteElement.classList.add('quote-style');
+  // quoteElement.innerHTML = quotes[randomNum].quote;
+  // authorElement.textContent = quotes[randomNum].author;
+  const { quote, author } = quotes[randomNum];
+  quoteElement.innerHTML = quote;
+  authorElement.textContent = author;
 };
 
 generateBtn.addEventListener('click', getRandomQuote);
