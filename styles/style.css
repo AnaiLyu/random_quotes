@@ -121,6 +121,10 @@ p {
   border-radius: 15px;
 }
 
+.favorite_btn_d-n {
+  display: none;
+}
+
 .favorite_btn {
   padding: 10px 20px;
   /* color: var(--Primary-light-color); */
@@ -139,6 +143,10 @@ p {
 .quote-style::before,
 .quote-style::after {
   content: '"'
+}
+
+.quote-author {
+  text-align: right;
 }
 
 .favorites_container {

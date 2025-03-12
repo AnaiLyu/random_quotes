@@ -6,7 +6,7 @@ import darkMode from './dark_mode.js';
 
 /** Quotes */
 const quoteElement = document.querySelector('.quote');
-const authorElement = document.querySelector('.author');
+const authorElement = document.querySelector('.quote-author');
 const generateBtn = document.querySelector('.generate-quote_btn');
 const favoriteBtn = document.querySelector('.favorite_btn');
 const favoritesContainer = document.querySelector('.favorites_container');
@@ -23,13 +23,14 @@ const getRandomQuote = () => {
   const { quote, author: quoteAuthor } = quotes[randomNum];
   quoteElement.innerHTML = quote;
   authorElement.textContent = quoteAuthor;
+  favoriteBtn.classList.remove('favorite_btn_d-n');
 };
 
 generateBtn.addEventListener('click', getRandomQuote);
 
 /** Make Favorite */
 const toggleFavorite = () => {
-  if (currentQuoteIndex === -1) return;
+  // if (currentQuoteIndex === -1) return;
 
   const currentQuote = quotes[currentQuoteIndex];
   currentQuote.isFavorite = !currentQuote.isFavorite;
@@ -46,7 +47,7 @@ const toggleFavorite = () => {
     const favoriteCard = document.createElement('div');
     favoriteCard.classList.add('favorite_card');
     favoriteCard.innerHTML = `<p class="quote-style">${currentQuote.quote}</p>
-    <p>${currentQuote.author}</p>`;
+    <p class="quote-author">${currentQuote.author}</p>`;
     favoritesContainer.appendChild(favoriteCard);
 
     const removeFavorQuote = document.createElement('div');
