@@ -1,3 +1,15 @@
+:root {
+  --Primary-light-color: #fffcfa;
+  --Primary-light-color-alpha: #fffcfabb;
+  --Primary-dark-color: #181C29;
+  --White-bg-color: #fbf4ed;
+  --Dark-bg-color: #222222;
+  --Button-blue-color: #006bdd;
+  --Button-blue-hover: #0056d3;
+  --Button-blue-active: #3066b4;
+  --Button-orange-color: #e9a831f1;
+}
+
 *,
 *::after,
 *::before {
@@ -47,68 +59,77 @@ p {
   margin: 1.7rem;
 }
 
-.dark-toggle {
-  margin-top: 10px;
-  padding: 5px 15px;
-  color: #000;
-  background-color: #006bdde3;
-  border-radius: 12px;
-}
-
-.favorite_btn {
-  padding: 10px 20px;
-  color: #fff;
-  background-color: #006bdde3;
-  border-radius: 15px;
-}
-
-.favorite_btn_active {
-  background-color: #e9a831f1;
-}
-
 /* Light Mode */
 .light-mode {
-  color: #222;
-  background-color: #fbf4ed;
+  color: var(--Primary-dark-color);
+  background-color: var(--White-bg-color);
 }
 
-.generate-quote_btn {
-  padding: 10px 20px;
-  color: #fff;
-  background-color: #006bdde3;
-  border-radius: 15px;
+.generate-quote_btn,
+.favorite_btn {
+  color: var(--Primary-light-color);
+  /* background-color: #006bdde3; */
+  background-color: var(--Button-blue-color);
 }
 
 .generate-quote_btn:hover,
 .favorite_btn:hover {
-  background-color: #006bdd;
+  /* background-color: #006bdd; */
+  background-color: var(--Button-blue-hover);
 }
 
 .generate-quote_btn:active,
 .favorite_btn:active {
-  color: #ffffffbb;
-  background-color: #0052a9;
+  color: var(--Primary-light-color-alpha);
+  /* background-color: #0052a9; */
+  background-color: var(--Button-blue-active);
 }
 
 /* Dark Mode */
 .dark-mode {
-  color: #fbf4ed;
-  background-color: #222;
+  color: var(--Primary-light-color);
+  background-color: var(--Dark-bg-color);
 }
 
 .dark-mode .dark-toggle {
-  color: #ffffffbb;
+  color: var(--Primary-light-color);
 }
 
 .dark-mode .generate-quote_btn:hover,
-.favorite_btn:hover {
-  background-color: #006bddaa;
+.dark-mode .favorite_btn:hover {
+  background-color: var(--Button-blue-active);
 }
 
 .dark-mode .generate-quote_btn:active,
-.favorite_btn:active {
-  color: #ffffffbb;
-  background-color: #005abaaa;
+.dark-mode .favorite_btn:active {
+  color: var(--Primary-light-color-alpha);
+  background-color: var(--Button-blue-hover);
+}
+
+/* And of Mode */
+
+.dark-toggle {
+  margin-top: 10px;
+  padding: 5px 15px;
+  color: var(--Primary-dark-color);
+  background-color: var(--Button-blue-color);
+  border-radius: 12px;
+}
+
+.generate-quote_btn {
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.favorite_btn {
+  padding: 10px 20px;
+  /* color: var(--Primary-light-color); */
+  /* background-color: #006bdde3; */
+  border-radius: 15px;
+}
+
+.favorite_btn_active {
+  background-color: var(--Button-orange-color);
 }
 
 .quote-style {
@@ -118,4 +139,38 @@ p {
 .quote-style::before,
 .quote-style::after {
   content: '"'
+}
+
+.favorites_container {
+  display: flex;
+  /* flex-flow: row-reverse wrap; */
+  flex-wrap: wrap;
+  justify-content: center;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+  gap: 20px;
+  margin: 3rem;
+}
+
+.favorite_card {
+  position: relative;
+  width: 250px;
+  padding: 2rem;
+  /* background-color: #f9f9f9; */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.remove-favor-quote {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 2rem;
+  background-image: url(../assets/delete-svgrepo-com.svg);
+  background-size: 2rem;
+  background-repeat: no-repeat;
+  background-position: top 50% right 50%;
+  cursor: pointer;
 }
