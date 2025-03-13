@@ -41,7 +41,7 @@ const toggleFavorite = () => {
   // }
 
   if (currentQuote.isFavorite) {
-    favoriteBtn.textContent = 'Remove';
+    // favoriteBtn.textContent = 'Remove';
     favoriteBtn.classList.add('favorite_btn_active');
 
     const favoriteCard = document.createElement('div');
@@ -56,14 +56,14 @@ const toggleFavorite = () => {
     const removeFavorCard = () => {
       currentQuote.isFavorite = false;
       favoriteCard.remove();
-      favoriteBtn.textContent = 'Favorite';
+      // favoriteBtn.textContent = 'Favorite';
       favoriteBtn.classList.remove('favorite_btn_active');
     };
 
     removeFavorQuote.addEventListener('click', removeFavorCard);
     favoriteCard.appendChild(removeFavorQuote);
   } else {
-    favoriteBtn.textContent = 'Favorite';
+    // favoriteBtn.textContent = 'Favorite';
     favoriteBtn.classList.remove('favorite_btn_active');
 
     const favoriteCards = document.querySelectorAll('.favorite_card');
@@ -91,10 +91,10 @@ const toggleFavorite = () => {
 // };
 const isFavoriteThisQuote = () => {
   if (quotes[currentQuoteIndex].isFavorite) {
-    favoriteBtn.textContent = 'Remove';
+    // favoriteBtn.textContent = 'Remove';
     favoriteBtn.classList.add('favorite_btn_active');
   } else {
-    favoriteBtn.textContent = 'Favorite';
+    // favoriteBtn.textContent = 'Favorite';
     favoriteBtn.classList.remove('favorite_btn_active');
   }
 };
