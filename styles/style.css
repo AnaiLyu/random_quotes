@@ -7,7 +7,7 @@
   --Button-blue-color: #006bdd;
   --Button-blue-hover: #0056d3;
   --Button-blue-active: #3066b4;
-  --Button-orange-color: #e9a831f1;
+  --Button-orange-color: #e9a831;
 }
 
 *,
@@ -65,21 +65,18 @@ p {
   background-color: var(--White-bg-color);
 }
 
-.generate-quote_btn,
-.favorite_btn {
+.generate-quote_btn {
   color: var(--Primary-light-color);
   /* background-color: #006bdde3; */
   background-color: var(--Button-blue-color);
 }
 
-.generate-quote_btn:hover,
-.favorite_btn:hover {
+.generate-quote_btn:hover {
   /* background-color: #006bdd; */
   background-color: var(--Button-blue-hover);
 }
 
-.generate-quote_btn:active,
-.favorite_btn:active {
+.generate-quote_btn:active {
   color: var(--Primary-light-color-alpha);
   /* background-color: #0052a9; */
   background-color: var(--Button-blue-active);
@@ -95,15 +92,22 @@ p {
   color: var(--Primary-light-color);
 }
 
-.dark-mode .generate-quote_btn:hover,
-.dark-mode .favorite_btn:hover {
+.dark-mode .generate-quote_btn:hover {
   background-color: var(--Button-blue-active);
 }
 
-.dark-mode .generate-quote_btn:active,
-.dark-mode .favorite_btn:active {
+.dark-mode .generate-quote_btn:active {
   color: var(--Primary-light-color-alpha);
   background-color: var(--Button-blue-hover);
+}
+
+.dark-mode .favorite_card {
+  /* box-shadow: 0 4px 8px rgb(233, 168, 49) */
+  box-shadow: 0px 0px 8px 4px rgba(233, 168, 49, 0.7);
+}
+
+.dark-mode .remove-favor-quote {
+  background-image: url(../assets/delete_filled.svg);
 }
 
 /* And of Mode */
@@ -126,14 +130,15 @@ p {
 }
 
 .favorite_btn {
+  margin-left: 2rem;
   padding: 10px 20px;
-  /* color: var(--Primary-light-color); */
-  /* background-color: #006bdde3; */
-  border-radius: 15px;
+  background-image: url(../assets/star.svg);
+  background-repeat: no-repeat;
 }
 
 .favorite_btn_active {
-  background-color: var(--Button-orange-color);
+  background-image: url(../assets/star_filled.svg);
+  /* background-color: var(--Button-orange-color); */
 }
 
 .quote-style {
@@ -176,7 +181,7 @@ p {
   width: 2rem;
   height: 2rem;
   padding: 2rem;
-  background-image: url(../assets/delete-svgrepo-com.svg);
+  background-image: url(../assets/delete.svg);
   background-size: 2rem;
   background-repeat: no-repeat;
   background-position: top 50% right 50%;
