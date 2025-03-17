@@ -4,7 +4,7 @@ import darkMode from './dark_mode.js';
 /** Dark Mode */
 //? darkToggle.addEventListener('click', darkMode);
 
-/** Quotes */
+/** Buttons, Generate and Favorite */
 const quoteElement = document.querySelector('.quote');
 const authorElement = document.querySelector('.quote-author');
 const generateBtn = document.querySelector('.generate-quote_btn');
@@ -13,6 +13,7 @@ const favoritesContainer = document.querySelector('.favorites_container');
 
 let currentQuoteIndex = -1;
 
+/** Get Random Quote */
 const getRandomQuote = () => {
   let randomNum;
   do {
@@ -29,76 +30,81 @@ const getRandomQuote = () => {
 generateBtn.addEventListener('click', getRandomQuote);
 
 /** Make Favorite */
-const toggleFavorite = () => {
-  // if (currentQuoteIndex === -1) return;
+const toggleFavoriteIcon = (isFavorite) =>
+  favoriteBtn.classList.toggle('favorite_btn_active', isFavorite);
 
+const showFavoriteCard = ({ quote, author, id }) => {
+  favoriteBtn.classList.add('favorite_btn_active');
+  const favoriteCard = document.createElement('div');
+  favoriteCard.classList.add('favorite_card');
+  favoriteCard.innerHTML = `<p class="quote-style">${quote}</p>
+    <p class="quote-author">${author}</p>`;
+  favoriteCard.id = id;
+  console.log(favoriteCard.id);
+
+  favoritesContainer.appendChild(favoriteCard);
+
+  const removeFavorQuote = document.createElement('div');
+  removeFavorQuote.classList.add('remove-favor-quote');
+  favoriteCard.appendChild(removeFavorQuote);
+
+  return { favoriteCard, removeFavorQuote }; // ВОЗВРАЩАЕМ оба элемента
+};
+
+const hideFavoriteCard = (quote) => {
+  favoriteBtn.classList.remove('favorite_btn_active');
+  const favoriteCards = document.querySelectorAll('.favorite_card'); //NodeList
+  console.log(favoriteCards);
+  favoriteCards.forEach((card) => {
+    console.log(card); // you can use for...of
+    if (card.textContent.includes(quote)) {
+      card.remove();
+    }
+  });
+};
+
+const toggleFavorite = () => {
   const currentQuote = quotes[currentQuoteIndex];
   currentQuote.isFavorite = !currentQuote.isFavorite;
   console.log(quotes);
 
-  // if (currentQuoteIndex !== -1) {
-  //   favoriteBtn.classList.add('favorite_btn_active');
-  // }
+  toggleFavoriteIcon(currentQuote.isFavorite);
 
   if (currentQuote.isFavorite) {
-    // favoriteBtn.textContent = 'Remove';
-    favoriteBtn.classList.add('favorite_btn_active');
+    const { favoriteCard, removeFavorQuote } = showFavoriteCard(currentQuote); // СОХРАНЯЕМ ссылку на карточку
 
-    const favoriteCard = document.createElement('div');
-    favoriteCard.classList.add('favorite_card');
-    favoriteCard.innerHTML = `<p class="quote-style">${currentQuote.quote}</p>
-    <p class="quote-author">${currentQuote.author}</p>`;
-    favoritesContainer.appendChild(favoriteCard);
-
-    const removeFavorQuote = document.createElement('div');
-    removeFavorQuote.classList.add('remove-favor-quote');
-
-    const removeFavorCard = () => {
+    const removeFavorCardIcon = () => {
       currentQuote.isFavorite = false;
       favoriteCard.remove();
-      // favoriteBtn.textContent = 'Favorite';
-      favoriteBtn.classList.remove('favorite_btn_active');
+      console.log(currentQuote.isFavorite);
+      if (quotes[currentQuoteIndex].id === Number(favoriteCard.id)) {
+        toggleFavoriteIcon(currentQuote.isFavorite);
+        console.log(currentQuote.isFavorite);
+      }
     };
 
-    removeFavorQuote.addEventListener('click', removeFavorCard);
-    favoriteCard.appendChild(removeFavorQuote);
+    removeFavorQuote.addEventListener('click', removeFavorCardIcon);
   } else {
-    // favoriteBtn.textContent = 'Favorite';
-    favoriteBtn.classList.remove('favorite_btn_active');
-
-    const favoriteCards = document.querySelectorAll('.favorite_card');
-    favoriteCards.forEach((card) => {
-      if (card.textContent.includes(currentQuote.quote)) {
-        card.remove();
-      }
-    });
+    hideFavoriteCard(currentQuote.quote);
   }
 };
 
 /** Favorite */
-// const makeFavorite = () => {
-// if (currentQuoteIndex !== -1) {
+// const isFavoriteThisQuote = () => {
+// favoriteBtn.classList.toggle(
+//   'favorite_btn_active',
+//   quotes[currentQuoteIndex].isFavorite
+// );
+// if (quotes[currentQuoteIndex].isFavorite) {
 //   favoriteBtn.classList.add('favorite_btn_active');
-// }
-// if (currentQuote.isFavorite !== true) {
+// } else {
 //   favoriteBtn.classList.remove('favorite_btn_active');
 // }
-// if (favoriteBtn.classList.contains('favorite_btn_active')) {
-//   favoriteBtn.textContent = 'Remove';
-// } else {
-//   favoriteBtn.textContent = 'Favorite';
-// }
+//   toggleFavoriteIcon(quotes[currentQuoteIndex].isFavorite);
 // };
-const isFavoriteThisQuote = () => {
-  if (quotes[currentQuoteIndex].isFavorite) {
-    // favoriteBtn.textContent = 'Remove';
-    favoriteBtn.classList.add('favorite_btn_active');
-  } else {
-    // favoriteBtn.textContent = 'Favorite';
-    favoriteBtn.classList.remove('favorite_btn_active');
-  }
-};
 
-// favoriteBtn.addEventListener('click', makeFavorite);
 favoriteBtn.addEventListener('click', toggleFavorite);
-generateBtn.addEventListener('click', isFavoriteThisQuote);
+// generateBtn.addEventListener('click', isFavoriteThisQuote);
+generateBtn.addEventListener('click', () =>
+  toggleFavoriteIcon(quotes[currentQuoteIndex].isFavorite)
+);
