@@ -1,5 +1,6 @@
 import quotes from './quotes.js';
 import darkMode from './dark_mode.js';
+import generateRandomInt from './randomNumber.js';
 import {
   toggleFavoriteIcon,
   showFavoriteCard,
@@ -19,10 +20,8 @@ let currentQuoteIndex = -1;
 
 /** Get Random Quote */
 const getRandomQuote = () => {
-  let randomNum;
-  do {
-    randomNum = Math.floor(Math.random() * quotes.length);
-  } while (randomNum === currentQuoteIndex);
+  const randomNum = generateRandomInt(quotes.length, currentQuoteIndex);
+
   currentQuoteIndex = randomNum;
   quoteElement.classList.add('quote-style');
   const { quote, author: quoteAuthor } = quotes[randomNum];
@@ -34,7 +33,6 @@ const getRandomQuote = () => {
 generateBtn.addEventListener('click', getRandomQuote);
 
 /** Make Favorite */
-
 const toggleFavorite = () => {
   const currentQuote = quotes[currentQuoteIndex];
   currentQuote.isFavorite = !currentQuote.isFavorite;
