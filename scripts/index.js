@@ -1,6 +1,10 @@
 import quotes from './quotes.js';
 import darkMode from './dark_mode.js';
-
+import {
+  toggleFavoriteIcon,
+  showFavoriteCard,
+  hideFavoriteCard,
+} from './favoritesHandler.js';
 /** Dark Mode */
 //? darkToggle.addEventListener('click', darkMode);
 
@@ -30,38 +34,6 @@ const getRandomQuote = () => {
 generateBtn.addEventListener('click', getRandomQuote);
 
 /** Make Favorite */
-const toggleFavoriteIcon = (isFavorite) =>
-  favoriteBtn.classList.toggle('favorite_btn_active', isFavorite);
-
-const showFavoriteCard = ({ quote, author, id }) => {
-  favoriteBtn.classList.add('favorite_btn_active');
-  const favoriteCard = document.createElement('div');
-  favoriteCard.classList.add('favorite_card');
-  favoriteCard.innerHTML = `<p class="quote-style">${quote}</p>
-    <p class="quote-author">${author}</p>`;
-  favoriteCard.id = id;
-  console.log(favoriteCard.id);
-
-  favoritesContainer.appendChild(favoriteCard);
-
-  const removeFavorQuote = document.createElement('div');
-  removeFavorQuote.classList.add('remove-favor-quote');
-  favoriteCard.appendChild(removeFavorQuote);
-
-  return { favoriteCard, removeFavorQuote }; // ВОЗВРАЩАЕМ оба элемента
-};
-
-const hideFavoriteCard = (quote) => {
-  favoriteBtn.classList.remove('favorite_btn_active');
-  const favoriteCards = document.querySelectorAll('.favorite_card'); //NodeList
-  console.log(favoriteCards);
-  favoriteCards.forEach((card) => {
-    console.log(card); // you can use for...of
-    if (card.textContent.includes(quote)) {
-      card.remove();
-    }
-  });
-};
 
 const toggleFavorite = () => {
   const currentQuote = quotes[currentQuoteIndex];
@@ -71,7 +43,10 @@ const toggleFavorite = () => {
   toggleFavoriteIcon(currentQuote.isFavorite);
 
   if (currentQuote.isFavorite) {
-    const { favoriteCard, removeFavorQuote } = showFavoriteCard(currentQuote); // СОХРАНЯЕМ ссылку на карточку
+    const { favoriteCard, removeFavorQuote } = showFavoriteCard(
+      currentQuote,
+      favoritesContainer
+    ); // СОХРАНЯЕМ ссылку на карточку
 
     const removeFavorCardIcon = () => {
       currentQuote.isFavorite = false;
@@ -108,3 +83,5 @@ favoriteBtn.addEventListener('click', toggleFavorite);
 generateBtn.addEventListener('click', () =>
   toggleFavoriteIcon(quotes[currentQuoteIndex].isFavorite)
 );
+
+export default favoriteBtn;
