@@ -1,4 +1,4 @@
-import { currentQuote } from './index.js';
+import { currentQuote } from './quotesHendler.js';
 
 const favoriteBtn = document.querySelector('.favorite_btn');
 const favoritesContainer = document.querySelector('.favorites_container');
